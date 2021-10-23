@@ -6,7 +6,9 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            DirWalker dw = new DirWalker();
+            dw.walk("/Users/vedant/Projects/Assignment1/Assignment1/Sample Data");
+            Console.ReadKey();
         }
     }
 }
