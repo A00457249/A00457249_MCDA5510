@@ -19,6 +19,8 @@ namespace Assignment1
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
 
+                    bool firstLine = true;
+
                     while (!parser.EndOfData)
                     {
                         // determine valid / invalid rows
@@ -26,6 +28,15 @@ namespace Assignment1
 
                         // process row
                         string[] fields = parser.ReadFields();
+
+                        // skip headers after first iter
+                        if (firstLine)
+                        {
+                            Console.WriteLine(String.Join(",", fields));
+                            firstLine = false;
+                            continue;
+                        }
+
                         foreach (string field in fields)
                         {
                             // check for empty string
