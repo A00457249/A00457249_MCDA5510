@@ -2,19 +2,25 @@
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
+
+
 namespace Assignment1
 {
     public class CSVParser
     {
-        public Tuple<int, int> Parse(String fileName)
+        public Tuple<int, int> Parse(String readPath, String writeValid, String writeInvalid)
         {
-            // initialize count variables
+            // initialize variables
+            WriteCSV wc = new WriteCSV();
+            var validRow = wc.OpenStream(writeValid);
+            var invalidRow = wc.OpenStream(writeInvalid);
+
             int validCount = 0;
             int invalidCount = 0;
 
             try
             {
-                using (TextFieldParser parser = new TextFieldParser(fileName))
+                using (TextFieldParser parser = new TextFieldParser(readPath))
                 {
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
@@ -32,7 +38,9 @@ namespace Assignment1
                         // skip headers after first iter
                         if (firstLine)
                         {
-                            Console.WriteLine(String.Join(",", fields));
+                            validRow.WriteLine(String.Join(",", fields));
+                            invalidRow.WriteLine(String.Join(",", fields));
+
                             firstLine = false;
                             continue;
                         }
@@ -51,13 +59,15 @@ namespace Assignment1
                         {
                             // Increment if row is invalid
                             invalidCount++;
-                            Console.WriteLine(String.Join(",", fields));
+                            invalidRow.WriteLine(String.Join(",", fields));
+
                             continue;
                         }
                         else
                         {
                             // increment if row is valid
                             validCount++;
+                            validRow.WriteLine(String.Join(",", fields));
                         }
                     }
                 }
@@ -67,6 +77,10 @@ namespace Assignment1
             {
                 Console.WriteLine(ioe.StackTrace);
             }
+
+            validRow.Close();
+            invalidRow.Close();
+
 
             return Tuple.Create(validCount, invalidCount);
         }

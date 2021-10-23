@@ -27,6 +27,7 @@ namespace Assignment1
                 
                 return new StreamWriter(fs);
             }
+
             catch (FileNotFoundException)
             {
                 Console.WriteLine("The file or directory cannot be found.");
