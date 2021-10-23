@@ -5,9 +5,14 @@ namespace Assignment1
 {
     public class DirWalker
     {
+        public int validTotal = 0;
+        public int invalidTotal = 0;
 
         public void walk(String path)
         {
+
+            String writeValid = "/Users/vedant/Projects/Assignment1/Assignment1/validRows.csv";
+            String writeInvalid = "/Users/vedant/Projects/Assignment1/Assignment1/invalidRows.csv";
 
             string[] list = Directory.GetDirectories(path);
 
@@ -19,14 +24,17 @@ namespace Assignment1
                 if (Directory.Exists(dirpath))
                 {
                     walk(dirpath);
-                    Console.WriteLine("Dir:" + dirpath);
                 }
             }
             string[] fileList = Directory.GetFiles(path, "*.csv");
-            foreach (string filepath in fileList)
+            for (int i = 0; i < fileList.Length; i++)
             {
 
-                Console.WriteLine("File:" + filepath);
+                CSVParser parser = new CSVParser();
+                (int validCount, int invalidCount) = parser.Parse(fileList[i], writeValid, writeInvalid);
+
+                validTotal += validCount;
+                invalidTotal += invalidCount;
             }
         }
 

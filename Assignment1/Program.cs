@@ -6,9 +6,11 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
+
             DirWalker dw = new DirWalker();
-            dw.walk("/Users/vedant/Projects/Assignment1/Assignment1/Sample Data");
-            Console.ReadKey();
+            dw.walk("/Users/vedant/Projects/Assignment1-dump/Assignment1/Sample Data");
+
+            Console.WriteLine("Total valid rows: " + dw.validTotal);
         }
     }
 }
