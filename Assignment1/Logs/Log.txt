@@ -1,0 +1,9 @@
+2021-10-23T23:46:47: Skipped row at line 2 of file: /Users/vedant/Projects/Assignment1/Assignment1/Sample Data/2019/1/1/CustomerData0.csv
+2021-10-23T23:46:47: Skipped row at line 7 of file: /Users/vedant/Projects/Assignment1/Assignment1/Sample Data/2019/1/1/CustomerData0.csv
+2021-10-23T23:46:47: Skipped row at line 8 of file: /Users/vedant/Projects/Assignment1/Assignment1/Sample Data/2019/1/1/CustomerData0.csv
+2021-10-23T23:46:47: Skipped row at line 3 of file: /Users/vedant/Projects/Assignment1/Assignment1/Sample Data/2019/1/2/CustomerData3.csv
+2021-10-23T23:46:47: Skipped row at line 4 of file: /Users/vedant/Projects/Assignment1/Assignment1/Sample Data/2019/1/2/CustomerData3.csv
+
+
+2021-10-23T23:46:47: Total Number of Valid Rows: 7
+2021-10-23T23:46:47: Total Number of Skipped Rows: 5

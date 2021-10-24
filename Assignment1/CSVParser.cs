@@ -9,6 +9,9 @@ namespace Assignment1
 {
     public class CSVParser
     {
+        static String logPath = "/Users/vedant/Projects/Assignment1/Assignment1/Logs/Log.txt";
+        static DateTime now = DateTime.Now;
+
         public Tuple<int, int> Parse(String readPath, String writeValid, String writeInvalid)
         {
             // initialize variables
@@ -27,26 +30,29 @@ namespace Assignment1
                     parser.SetDelimiters(",");
 
                     parser.ReadLine();
+                    int rowCount = 0;
 
                     while (!parser.EndOfData)
                     {
+                        rowCount++;
+
                         // determine valid / invalid rows
-                        bool flag = false;
+                        bool isValidRow = false;
 
                         // process row
                         List<string> fields = new List<string>(parser.ReadFields());
-
-                        foreach (string field in fields)
+                        for (int i = 0; i < fields.Count; i++)
                         {
                             // check for empty string
-                            if (string.IsNullOrEmpty(field))
+                            if (string.IsNullOrEmpty(fields[i]))
                             {
-                                flag = true;
+                                System.IO.File.AppendAllText(logPath, now.ToString("s") + ": Skipped row at line " + rowCount + " of file: " + readPath + "\n");
+                                isValidRow = true;
                                 break;
                             }
                         
                         }
-                        if (flag)
+                        if (isValidRow)
                         {
                             // Increment if row is invalid
                             invalidCount++;
