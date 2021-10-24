@@ -46,15 +46,17 @@ namespace Assignment1
                         List<string> fields = new List<string>(parser.ReadFields());
                         for (int i = 0; i < fields.Count; i++)
                         {
+
                             // check for empty string
-                            if (string.IsNullOrEmpty(fields[i]))
+                            if (string.IsNullOrEmpty(fields[i]) | fields[3].Contains("/"))
                             {
+
                                 // log if cell value is missing
                                 System.IO.File.AppendAllText(logPath, now.ToString("s") + ": Skipped row at line " + rowCount + " of file: " + readPath + "\n");
                                 isValidRow = true;
                                 break;
                             }
-                        
+
                         }
                         if (isValidRow)
                         {
