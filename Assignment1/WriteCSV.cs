@@ -9,6 +9,8 @@ namespace Assignment1
 
         public StreamWriter OpenStream(string path)
         {
+
+            // check if path is null
             if (path is null)
             {
                 Console.WriteLine("You did not supply a file path.");
@@ -18,6 +20,8 @@ namespace Assignment1
             try
             {
                 FileStream fs = null;
+
+                // create new file if path exists else open in append mode
                 if (!File.Exists(path))
                 {
                     fs = new FileStream(path, FileMode.CreateNew);
