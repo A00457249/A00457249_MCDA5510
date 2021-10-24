@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
@@ -33,7 +34,7 @@ namespace Assignment1
                         bool flag = false;
 
                         // process row
-                        string[] fields = parser.ReadFields();
+                        List<string> fields = new List<string>(parser.ReadFields());
 
                         // skip headers after first iter
                         if (firstLine)
@@ -67,6 +68,14 @@ namespace Assignment1
                         {
                             // increment if row is valid
                             validCount++;
+
+                            // add date
+                            var splitPath = readPath.Split('/');
+                            var strdate = splitPath.GetValue(7) + "/" + splitPath.GetValue(8) + "/" + splitPath.GetValue(9);
+                            DateTime date = DateTime.Parse(strdate);
+
+                            fields.Add(date.ToString("yyyy-MM-dd"));
+
                             validRow.WriteLine(String.Join(",", fields));
                         }
                     }
