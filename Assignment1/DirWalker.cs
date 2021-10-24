@@ -13,7 +13,6 @@ namespace Assignment1
         {
             // initialize path strings
             String writeValid = "/Users/vedant/Projects/Assignment1/Assignment1/Output/validRows.csv";
-            String writeInvalid = "/Users/vedant/Projects/Assignment1/Assignment1/Output/invalidRows.csv";
 
             string[] list = Directory.GetDirectories(path);
 
@@ -32,7 +31,7 @@ namespace Assignment1
             {
                 // parse files
                 CSVParser parser = new CSVParser();
-                (int validCount, int invalidCount) = parser.Parse(fileList[i], writeValid, writeInvalid);
+                (int validCount, int invalidCount) = parser.Parse(fileList[i], writeValid);
 
                 // add up counts across files
                 validTotal += validCount;

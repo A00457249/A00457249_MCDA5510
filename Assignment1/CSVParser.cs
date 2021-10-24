@@ -13,12 +13,11 @@ namespace Assignment1
         static String logPath = "/Users/vedant/Projects/Assignment1/Assignment1/Logs/Log.txt";
         static DateTime now = DateTime.Now;
 
-        public Tuple<int, int> Parse(String readPath, String writeValid, String writeInvalid)
+        public Tuple<int, int> Parse(String readPath, String writeValid)
         {
             // initialize writer
             FileWriter wc = new FileWriter();
             var validRow = wc.OpenStream(writeValid);
-            var invalidRow = wc.OpenStream(writeInvalid);
 
             // initialize vairables
             int validCount = 0;
@@ -44,25 +43,35 @@ namespace Assignment1
 
                         // process row
                         List<string> fields = new List<string>(parser.ReadFields());
+
                         for (int i = 0; i < fields.Count; i++)
                         {
 
-                            // check for empty string
-                            if (string.IsNullOrEmpty(fields[i]) | fields[3].Contains("/"))
+                            try
                             {
+                                // check for empty string
+                                if (string.IsNullOrEmpty(fields[i]) | fields[3].Contains("/"))
+                                {
 
-                                // log if cell value is missing
-                                System.IO.File.AppendAllText(logPath, now.ToString("s") + ": Skipped row at line " + rowCount + " of file: " + readPath + "\n");
+                                    // log if cell value is missing
+                                    System.IO.File.AppendAllText(logPath, now.ToString("s") + ": Skipped row at line " + rowCount + " of file: \t" + readPath + "\n");
+                                    isValidRow = true;
+                                    break;
+                                }
+                            }
+
+                            catch (ArgumentOutOfRangeException)
+                            {
                                 isValidRow = true;
                                 break;
                             }
+
 
                         }
                         if (isValidRow)
                         {
                             // increment if row is invalid
                             invalidCount++;
-                            invalidRow.WriteLine(String.Join(",", fields));
 
                             continue;
                         }
@@ -91,7 +100,6 @@ namespace Assignment1
 
             // close the writer
             validRow.Close();
-            invalidRow.Close();
 
             // return counts
             return Tuple.Create(validCount, invalidCount);
