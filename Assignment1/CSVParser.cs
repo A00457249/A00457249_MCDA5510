@@ -44,13 +44,12 @@ namespace Assignment1
                         // process row
                         List<string> fields = new List<string>(parser.ReadFields());
 
-                        for (int i = 0; i < fields.Count; i++)
+                        foreach (string field in fields)
                         {
-
                             try
                             {
                                 // check for empty string
-                                if (string.IsNullOrEmpty(fields[i]) | fields[3].Contains("/"))
+                                if (string.IsNullOrEmpty(field) | fields[3].Contains("/"))
                                 {
 
                                     // log if cell value is missing
