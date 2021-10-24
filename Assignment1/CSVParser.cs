@@ -26,7 +26,7 @@ namespace Assignment1
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
 
-                    bool firstLine = true;
+                    parser.ReadLine();
 
                     while (!parser.EndOfData)
                     {
@@ -35,16 +35,6 @@ namespace Assignment1
 
                         // process row
                         List<string> fields = new List<string>(parser.ReadFields());
-
-                        // skip headers after first iter
-                        if (firstLine)
-                        {
-                            validRow.WriteLine(String.Join(",", fields));
-                            invalidRow.WriteLine(String.Join(",", fields));
-
-                            firstLine = false;
-                            continue;
-                        }
 
                         foreach (string field in fields)
                         {
