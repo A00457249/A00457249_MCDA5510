@@ -16,7 +16,7 @@ namespace Assignment1
         public Tuple<int, int> Parse(String readPath, String writeValid, String writeInvalid)
         {
             // initialize writer
-            WriteCSV wc = new WriteCSV();
+            FileWriter wc = new FileWriter();
             var validRow = wc.OpenStream(writeValid);
             var invalidRow = wc.OpenStream(writeInvalid);
 

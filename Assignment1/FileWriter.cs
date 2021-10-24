@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Assignment1
 {
-    public class WriteCSV
+    public class FileWriter
     {
 
         public StreamWriter OpenStream(string path)

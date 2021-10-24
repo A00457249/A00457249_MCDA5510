@@ -7,12 +7,21 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
-            // initialize variabes
+            string[] header = { "First Name", "Last Name", "Street Number", "Street", "City", "Province", "Postal Code", "Country", "Phone Number", "email Address", "Date" };
             String logPath = "/Users/vedant/Projects/Assignment1/Assignment1/Logs/Log.txt";
+            String writeValid = "/Users/vedant/Projects/Assignment1/Assignment1/Output/validRows.csv";
+
             DateTime now = DateTime.Now;
 
             // start timer
             Stopwatch stopwatch = Stopwatch.StartNew();
+
+            // open writer to write header
+            FileWriter wc = new FileWriter();
+            var writer = wc.OpenStream(writeValid);
+
+            writer.WriteLine(String.Join(",", header));
+            writer.Close();
 
 
             // walk through directories and parse files
